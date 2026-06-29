@@ -51,7 +51,7 @@ st.markdown("""
 def load_model():
     model = CatBoostClassifier()
     try:
-        model.load_model("final_catboost_modol.cbm")
+        model.load_model("catboost/libs/model/final_catboost_modol.cbm")
         return model
     except Exception as e:
         st.error(f"Error loading model: {e}")
