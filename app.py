@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import pandas as pd
 from catboost import CatBoostClassifier
@@ -46,12 +47,17 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 
-# --- Model Loading ---
+# --- Model Loading (Updated for Streamlit Server) ---
 @st.cache_resource
 def load_model():
     model = CatBoostClassifier()
+    
+    # বর্তমান ডিরেক্টরি অনুযায়ী মডেল ফাইলের সঠিক পাথ তৈরি করা
+    current_dir = os.path.dirname(__file__)
+    model_path = os.path.join(current_dir, "final_catboost_modol.cbm")
+    
     try:
-        model.load_model("final_catboost_modol.cbm")
+        model.load_model(model_path)
         return model
     except Exception as e:
         st.error(f"Error loading model: {e}")
@@ -108,7 +114,7 @@ labels = {
     },
     "বাংলা": {
         "title": "🩸 ডায়াবেটিস ঝুঁকি মূল্যায়ন ও অ্যানালিটিক্স",
-        "subtitle": "এই ক্লিনিকাল ডিসিশন সাপোর্ট টুলটি ডায়াবেটিসের প্রাথমিক ঝুঁকি পূর্বাভাস দেওয়ার জন্য পেশেন্ট ডেমোগ্রাফিক্স এবং সাধারণ লক্ষণগুলির ওপর ভিত্তি করে একটি মেশিন লার্নিং মডেল ব্যবহার করে।",
+        "subtitle": "এই ক্লিনিকাল ডিসিশন সাপোর্ট টুলটি ডায়াবেটিসের প্রাথমিক ঝুঁকি পূর্বাভাস দেওয়ার জন্য পেশেন্ট ডেমোগ্রাফিক্স এবং সাধারণ লক্ষণগুলির ওপর ভিত্তি করে একটি machine learning মডেল ব্যবহার করে।",
         "demo_header": "📋 ডেমোগ্রাফিক্স (সাধারণ তথ্য)",
         "age": "বয়স",
         "gender": "লিঙ্গ",
@@ -135,10 +141,10 @@ labels = {
         "xai_header": "🧠 এক্সপ্লেইনেবল এআই (XAI) এবং ক্লিনিকাল ইনসাইটস",
         "xai_subtitle": "ডাক্তারদের সিদ্ধান্ত গ্রহণের সুবিধার্থে মডেলের ব্যাকএ্যান্ড অ্যানালিটিক্স এবং **SHAP (SHapley Additive exPlanations)** ভ্যালুর ওপর ভিত্তি করে নিচে একটি রিয়েল-টাইম ব্যাখ্যা দেওয়া হলো। এর মাধ্যমে জানা যাবে রোগীর কোন লক্ষণটি সিদ্ধান্তে সবচেয়ে বেশি প্রভাব ফেলেছে।",
         "global_title": "📊 গ্লোবাল ফিচার ইম্পর্ট্যান্স (SHAP ওভারভিউ)",
-        "global_caption": "চিত্র: ডায়াবেটিস পূর্বাভাসের ক্ষেত্রে বিভিন্ন ফিচারের আপেক্ষিক বৈশ্বিক গুরুত্ব নির্দেশক SHAP ভ্যালু (image_a0f4a1.png থেকে প্রাপ্ত)।",
+        "global_caption": "চিত্র: ডায়াবেটিস পূর্বাভাসের ক্ষেত্রে বিভিন্ন ফিচারের আপেক্ষিক বৈশ্বিক গুরুত্ব নির্দেশক SHAP ভ্যালু।",
         "patient_title": "🩺 রোগী-নির্দিষ্ট ক্লিনিকাল ব্রেকডাউন",
         "drivers_title": "⚠️ **ঝুঁকি বৃদ্ধির প্রধান কারণসমূহ:**",
-        "drivers_sub": "• **টপ-টায়ার ড্রাইভার্স:** রোগীর শরীরে নিম্নোক্ত প্রধান লক্ষণগুলো উপস্থিত থাকায় মডেলটির ডায়াবেটিস পজিটিভ আসার সম্ভাবনা তীব্র হয়েছে:",
+        "drivers_sub": "• **টপ-টায়ার ড্রাইভার্স:** রোগীর শরীরে নিম্নোক্ত প্রধান লক্ষণগুলো উপস্থিত থাকায় মডেলটির ডায়াবেটিস পজিটিভ আসার সম্ভাবনা তীব্র হয়েছে:",
         "secondary_sub": "• **সহায়ক লক্ষণসমূহ:** এছাড়া সাপোর্টিং ফ্যাক্টর হিসেবে এই লক্ষণগুলো ঝুঁকি বাড়াতে ভূমিকা রেখেছে:",
         "clinical_note_pos": "> **ক্লিনিকাল নোট:** আমাদের মডেলে **Polyuria** এবং **Polydipsia** সবচেয়ে শক্তিশালী ঝুঁকির সূচক (যেমনটি গ্লোবাল চার্টে দৃশ্যমান)। রোগীর এই লক্ষণগুলো থাকলে দ্রুত HbA1c বা ফাস্টিং ব্লাড সুগার টেস্ট করানোর পরামর্শ দেওয়া যাচ্ছে।",
         "success_title": "✅ **ঝুঁকি মুক্ত থাকার কারণ:**",
@@ -246,7 +252,7 @@ if predict_btn:
 
         with xai_col1:
             st.write(f"**{current_labels['global_title']}**")
-            # SHAP Global Importance data mapping from image_a0f4a1.png
+            # SHAP Global Importance data mapping
             shap_data = pd.DataFrame({
                 'Features': ['Polyuria', 'Polydipsia', 'Gender', 'Itching', 'Alopecia', 'Age', 'Delayed healing',
                              'Irritability'],
