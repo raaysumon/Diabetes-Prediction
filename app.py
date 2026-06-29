@@ -51,7 +51,7 @@ st.markdown("""
 def load_model():
     model = CatBoostClassifier()
     try:
-        model.load_model("catboost/libs/model/final_catboost_modol.cbm")
+        model.load_model("final_catboost_modol.cbm")
         return model
     except Exception as e:
         st.error(f"Error loading model: {e}")
@@ -95,7 +95,7 @@ labels = {
         "xai_header": "🧠 Explainable AI (XAI) & Clinical Insights",
         "xai_subtitle": "To assist doctors in decision-making, below is a real-time explanation based on backend analytics and **SHAP (SHapley Additive exPlanations)** values. This highlights which symptoms contributed most to the model's decision.",
         "global_title": "📊 Global Feature Importance (SHAP Overview)",
-        "global_caption": "Figure: SHAP values indicating the relative global importance of features in diabetes prediction (referenced from image_a0f4a1.png).",
+        "global_caption": "Figure: SHAP values indicating the relative global importance of features in diabetes prediction.",
         "patient_title": "🩺 Patient-Specific Clinical Breakdown",
         "drivers_title": "⚠️ **Primary Risk Drivers:**",
         "drivers_sub": "• **Top-Tier Drivers:** The presence of these major high-impact symptoms significantly increased the probability of diabetes:",
