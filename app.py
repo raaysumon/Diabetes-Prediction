@@ -18,26 +18,59 @@ if st.session_state.app_language is None:
     st.markdown("""
         <style>
         .stApp { background-color: #0f172a !important; color: #f1f5f9 !important; }
+        
+        /* Language selection card container with responsiveness */
         .lang-box {
-            max-width: 500px;
-            margin: 100px auto;
-            padding: 30px;
+            max-width: 450px;
+            margin: 80px auto;
+            padding: 35px 25px;
             background: #1e293b;
             border-radius: 16px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             border: 1px solid rgba(255,255,255,0.08);
             text-align: center;
         }
+        
+        /* 🔴 Radio text color fix for crisp visibility */
+        div[data-testid="stRadio"] label p {
+            color: #f1f5f9 !important;
+            font-size: 1.1rem !important;
+            font-weight: 500 !important;
+        }
+        
         div[data-testid="stForm"] { background-color: transparent !important; border: none !important; padding: 0 !important; }
-        .stButton>button {
-            background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%) !important;
-            color: white !important; font-weight: bold !important; border-radius: 8px !important; width: 100% !important;
+        
+        /* 🔴 Premium Red Language Button */
+        div[data-testid="stForm"] .stButton>button {
+            background: linear-gradient(90deg, #dc2626 0%, #991b1b 100%) !important;
+            color: white !important; 
+            font-weight: bold !important; 
+            border-radius: 8px !important; 
+            width: 100% !important;
+            height: 3.2em !important;
+            border: none !important;
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3) !important;
+            transition: 0.3s !important;
+            font-size: 1rem !important;
+        }
+        
+        div[data-testid="stForm"] .stButton>button:hover {
+            background: linear-gradient(90deg, #b91c1c 0%, #7f1d1d 100%) !important;
+            box-shadow: 0 6px 16px rgba(220, 38, 38, 0.5) !important;
+        }
+        
+        /* Mobile adjustment for language box */
+        @media (max-width: 640px) {
+            .lang-box {
+                margin: 40px 15px;
+                padding: 25px 15px;
+            }
         }
         </style>
     """, unsafe_allow_html=True)
     
     st.markdown('<div class="lang-box">', unsafe_allow_html=True)
-    st.markdown("<h2 style='color:#60a5fa; margin-bottom:20px;'>🌐 Select Language / ভাষা নির্বাচন করুন</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='color:#ef4444; margin-bottom:25px; font-weight:700;'>🌐 Select Language<br><span style='font-size:1.3rem; font-weight:400;'>ভাষা নির্বাচন করুন</span></h2>", unsafe_allow_html=True)
     
     with st.form(key="language_selection_form"):
         chosen_lang = st.radio("Choose your interface language:", ["English", "বাংলা"], index=None, label_visibility="collapsed")
@@ -51,7 +84,7 @@ if st.session_state.app_language is None:
 
 lang = st.session_state.app_language
 
-# --- 2. PREMIUM DARK THEME CSS ---
+# --- 2. PREMIUM DARK THEME & RESPONSIVE MAIN CSS ---
 st.markdown("""
     <style>
     /* Main App Dark Background */
@@ -60,12 +93,12 @@ st.markdown("""
         color: #e2e8f0 !important;
     }
 
-    /* Headings & Text Color Fixes for Dark Mode */
+    /* Typography Color Fixes */
     h1, h2, h3, h4, h5, h6, label, p, span {
         color: #f1f5f9 !important;
     }
 
-    /* Custom Styling for Selectbox, Input Box inside Dark Theme */
+    /* Form Fields Styling */
     div[data-baseweb="select"] > div {
         background-color: #1e293b !important;
         color: #f1f5f9 !important;
@@ -78,17 +111,18 @@ st.markdown("""
         border: 1px solid #334155 !important;
     }
 
-    /* Primary Prediction Button */
+    /* 🔴 Primary Action Prediction Button */
     .stButton>button {
         width: 100%;
         border-radius: 8px;
-        height: 3em;
+        height: 3.2em;
         background: linear-gradient(90deg, #dc2626 0%, #b91c1c 100%) !important;
         color: white !important;
         font-weight: bold !important;
         border: none !important;
         transition: 0.3s;
         box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+        font-size: 1.05rem !important;
     }
 
     .stButton>button:hover {
@@ -96,7 +130,7 @@ st.markdown("""
         box-shadow: 0 6px 16px rgba(220, 38, 38, 0.5);
     }
 
-    /* Form Container Sections (Cards) */
+    /* Cards/Containers layout for selectors */
     div[data-testid="stVerticalBlock"] > div:has(div.stColumn) {
         background-color: #1e293b !important;
         padding: 25px;
@@ -114,9 +148,8 @@ st.markdown("""
         border-radius: 12px;
         margin-bottom: 15px;
         box-shadow: 0 4px 20px rgba(239, 68, 68, 0.15);
-        border-top: 1px solid #7f1d1d;
-        border-right: 1px solid #7f1d1d;
-        border-bottom: 1px solid #7f1d1d;
+        border: 1px solid #7f1d1d;
+        border-left: 6px solid #ef4444;
     }
     .dark-red-alert h3 { color: #fecaca !important; margin: 0 0 5px 0; font-weight: bold; }
 
@@ -129,17 +162,24 @@ st.markdown("""
         border-radius: 12px;
         margin-bottom: 15px;
         box-shadow: 0 4px 20px rgba(16, 185, 129, 0.15);
-        border-top: 1px solid #064e3b;
-        border-right: 1px solid #064e3b;
-        border-bottom: 1px solid #064e3b;
+        border: 1px solid #064e3b;
+        border-left: 6px solid #10b981;
     }
     .dark-green-alert h3 { color: #a7f3d0 !important; margin: 0 0 5px 0; font-weight: bold; }
     
-    /* Info text updates */
+    /* Standard alerts and Info styling wrapper */
     div[data-testid="stAlert"] {
         background-color: #1e293b !important;
         color: #e2e8f0 !important;
         border: 1px solid #334155 !important;
+    }
+
+    /* Make columns beautifully stacked on mobile web layouts */
+    @media (max-width: 768px) {
+        div[data-testid="stHorizontalBlock"] {
+            flex-direction: column !important;
+            gap: 15px !important;
+        }
     }
     </style>
     """, unsafe_allow_html=True)
