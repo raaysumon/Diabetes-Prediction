@@ -40,10 +40,13 @@ if st.session_state.app_language is None:
         
         div[data-testid="stForm"] { background-color: transparent !important; border: none !important; padding: 0 !important; }
         
-        /* 🔵 Premium Royal Blue Language Button */
-        div[data-testid="stForm"] .stButton>button {
+        /* 🔵 FORCE FANCY ROYAL BLUE FOR ALL BUTTONS & INTERNAL TEXTS 🔵 */
+        div[data-testid="stForm"] button[data-testid="stBaseButton-secondaryFormSubmit"],
+        div[data-testid="stForm"] button[data-testid="stBaseButton-secondaryFormSubmit"] p,
+        .stButton>button, 
+        .stButton>button p {
             background: linear-gradient(90deg, #1d4ed8 0%, #1e40af 100%) !important;
-            color: white !important; 
+            color: #ffffff !important; 
             font-weight: bold !important; 
             border-radius: 8px !important; 
             width: 100% !important;
@@ -52,9 +55,11 @@ if st.session_state.app_language is None:
             box-shadow: 0 4px 12px rgba(29, 78, 216, 0.4) !important;
             transition: 0.3s !important;
             font-size: 1rem !important;
+            text-shadow: none !important;
         }
         
-        div[data-testid="stForm"] .stButton>button:hover {
+        div[data-testid="stForm"] button[data-testid="stBaseButton-secondaryFormSubmit"]:hover,
+        .stButton>button:hover {
             background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%) !important;
             box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6) !important;
         }
@@ -111,23 +116,27 @@ st.markdown("""
         border: 1px solid #334155 !important;
     }
 
-    /* 🔵 Primary Action Prediction Button -> Royal Blue Theme 🔵 */
-    .stButton>button {
-        width: 100%;
-        border-radius: 8px;
-        height: 3.2em;
+    /* 🔵 Primary Action Prediction Button & its Internal Paragraphs -> Royal Blue Theme 🔵 */
+    .stButton>button, 
+    .stButton>button p,
+    button[data-testid="stBaseButton-secondary"],
+    button[data-testid="stBaseButton-secondary"] p {
+        width: 100% !important;
+        border-radius: 8px !important;
+        height: 3.2em !important;
         background: linear-gradient(90deg, #1d4ed8 0%, #1e40af 100%) !important;
-        color: white !important;
+        color: #ffffff !important;
         font-weight: bold !important;
         border: none !important;
         transition: 0.3s;
-        box-shadow: 0 4px 12px rgba(29, 78, 216, 0.4);
+        box-shadow: 0 4px 12px rgba(29, 78, 216, 0.4) !important;
         font-size: 1.05rem !important;
     }
 
-    .stButton>button:hover {
+    .stButton>button:hover,
+    button[data-testid="stBaseButton-secondary"]:hover {
         background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%) !important;
-        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6);
+        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6) !important;
     }
 
     /* Cards/Containers layout for selectors */
@@ -283,7 +292,7 @@ labels = {
         "secondary_sub": "• **সহায়ক লক্ষণসমূহ:** এছাড়া সাপোর্টিং ফ্যাক্টর হিসেবে এই লক্ষণগুলো ঝুঁকি বাড়াতে ভূমিকা রেখেছে:",
         "clinical_note_pos": "> **ক্লিনিকাল নোট:** আমাদের মডেলে **Polyuria** এবং **Polydipsia** সবচেয়ে শক্তিশালী ঝুঁকির সূচক। রোগীর এই লক্ষণগুলো থাকলে দ্রুত HbA1c বা ফাস্টিং ব্লাড সুগার টেস্ট করানোর পরামর্শ দেওয়া যাচ্ছে।",
         "success_title": "✅ **ঝুঁকি মুক্ত থাকার কারণ:**",
-        "success_msg_1": "• মডেলের প্রধান দুটি হাই-ইমপ্যাক্ট লক্ষণ (**Polyuria** এবং **Polydipsia**) রোগীর মধ্যে **অনুপস্থিত**। এটি রিস্ক স্কোর সর্বনিম্ন রাখার প্রধান কারণ।",
+        "success_msg_1": "• মডেলের প্রধান দুটি充 হাই-ইমপ্যাক্ট লক্ষণ (**Polyuria** এবং **Polydipsia**) রোগীর মধ্যে **অনুপস্থিত**। এটি রিস্ক স্কোর সর্বনিম্ন রাখার প্রধান কারণ।",
         "success_msg_2": "• রোগীর কিছু লক্ষণ থাকলেও সামগ্রিক কম্বিনেশন এবং লো-লেভেল সেকেন্ডারি সাইন্সের কারণে চূড়ান্ত স্কোর ডায়াবেতিসের ঝুঁকির সীমার নিচে রয়েছে।",
         "clinical_note_neg": "> **ক্লিনিকাল নোট:** যদিও বর্তমান লক্ষণ অনুযায়ী কোনো ঝুঁকি নেই, তবুও রোগীর বয়স এবং অন্যান্য লাইফস্টাইল ফ্যাক্টরের দিকে নিয়মিত নজর রাখা উচিত।"
     }
