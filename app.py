@@ -31,7 +31,7 @@ if st.session_state.app_language is None:
             text-align: center;
         }
         
-        /* 🔴 Radio text color fix for crisp visibility */
+        /* 🔵 Radio text color fix for crisp visibility */
         div[data-testid="stRadio"] label p {
             color: #f1f5f9 !important;
             font-size: 1.1rem !important;
@@ -40,23 +40,23 @@ if st.session_state.app_language is None:
         
         div[data-testid="stForm"] { background-color: transparent !important; border: none !important; padding: 0 !important; }
         
-        /* 🔴 Premium Red Language Button */
+        /* 🔵 Premium Royal Blue Language Button */
         div[data-testid="stForm"] .stButton>button {
-            background: linear-gradient(90deg, #dc2626 0%, #991b1b 100%) !important;
+            background: linear-gradient(90deg, #1d4ed8 0%, #1e40af 100%) !important;
             color: white !important; 
             font-weight: bold !important; 
             border-radius: 8px !important; 
             width: 100% !important;
             height: 3.2em !important;
             border: none !important;
-            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3) !important;
+            box-shadow: 0 4px 12px rgba(29, 78, 216, 0.4) !important;
             transition: 0.3s !important;
             font-size: 1rem !important;
         }
         
         div[data-testid="stForm"] .stButton>button:hover {
-            background: linear-gradient(90deg, #b91c1c 0%, #7f1d1d 100%) !important;
-            box-shadow: 0 6px 16px rgba(220, 38, 38, 0.5) !important;
+            background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%) !important;
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6) !important;
         }
         
         /* Mobile adjustment for language box */
@@ -70,7 +70,7 @@ if st.session_state.app_language is None:
     """, unsafe_allow_html=True)
     
     st.markdown('<div class="lang-box">', unsafe_allow_html=True)
-    st.markdown("<h2 style='color:#ef4444; margin-bottom:25px; font-weight:700;'>🌐 Select Language<br><span style='font-size:1.3rem; font-weight:400;'>ভাষা নির্বাচন করুন</span></h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='color:#38bdf8; margin-bottom:25px; font-weight:700;'>🌐 Select Language<br><span style='font-size:1.3rem; font-weight:400; color:#cbd5e1;'>ভাষা নির্বাচন করুন</span></h2>", unsafe_allow_html=True)
     
     with st.form(key="language_selection_form"):
         chosen_lang = st.radio("Choose your interface language:", ["English", "বাংলা"], index=None, label_visibility="collapsed")
@@ -111,23 +111,23 @@ st.markdown("""
         border: 1px solid #334155 !important;
     }
 
-    /* 🔴 Primary Action Prediction Button */
+    /* 🔵 Primary Action Prediction Button -> Royal Blue Theme 🔵 */
     .stButton>button {
         width: 100%;
         border-radius: 8px;
         height: 3.2em;
-        background: linear-gradient(90deg, #dc2626 0%, #b91c1c 100%) !important;
+        background: linear-gradient(90deg, #1d4ed8 0%, #1e40af 100%) !important;
         color: white !important;
         font-weight: bold !important;
         border: none !important;
         transition: 0.3s;
-        box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+        box-shadow: 0 4px 12px rgba(29, 78, 216, 0.4);
         font-size: 1.05rem !important;
     }
 
     .stButton>button:hover {
-        background: linear-gradient(90deg, #b91c1c 0%, #991b1b 100%) !important;
-        box-shadow: 0 6px 16px rgba(220, 38, 38, 0.5);
+        background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%) !important;
+        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6);
     }
 
     /* Cards/Containers layout for selectors */
@@ -139,7 +139,7 @@ st.markdown("""
         box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     }
 
-    /* 🔴 Diabetes Positive: Luxury Dark Red Alert Box */
+    /* Diabetes Positive: Luxury Dark Red Alert Box */
     .dark-red-alert {
         background-color: #450a0a !important;
         border-left: 6px solid #ef4444 !important;
@@ -149,11 +149,10 @@ st.markdown("""
         margin-bottom: 15px;
         box-shadow: 0 4px 20px rgba(239, 68, 68, 0.15);
         border: 1px solid #7f1d1d;
-        border-left: 6px solid #ef4444;
     }
     .dark-red-alert h3 { color: #fecaca !important; margin: 0 0 5px 0; font-weight: bold; }
 
-    /* 🟢 Diabetes Negative: Luxury Dark Green Alert Box */
+    /* Diabetes Negative: Luxury Dark Green Alert Box */
     .dark-green-alert {
         background-color: #022c22 !important;
         border-left: 6px solid #10b981 !important;
@@ -163,7 +162,6 @@ st.markdown("""
         margin-bottom: 15px;
         box-shadow: 0 4px 20px rgba(16, 185, 129, 0.15);
         border: 1px solid #064e3b;
-        border-left: 6px solid #10b981;
     }
     .dark-green-alert h3 { color: #a7f3d0 !important; margin: 0 0 5px 0; font-weight: bold; }
     
@@ -281,7 +279,7 @@ labels = {
         "global_caption": "চিত্র: ডায়াবেটিস পূর্বাভাসের ক্ষেত্রে বিভিন্ন ফিচারের আপেক্ষিক বৈশ্বিক গুরুত্ব নির্দেশক SHAP ভ্যালু।",
         "patient_title": "🩺 রোগী-নির্দিষ্ট ক্লিনিকাল ব্রেকডাউন",
         "drivers_title": "⚠️ **ঝুঁকি বৃদ্ধির প্রধান কারণসমূহ:**",
-        "drivers_sub": "• **টপ-টায়ার ড্রাইভার্স:** রোগীর শরীরে নিম্নোক্ত প্রধান লক্ষণগুলো উপস্থিত থাকায় মডেলটির ডায়াবেটিস পজিティブ আসার সম্ভাবনা তীব্র হয়েছে:",
+        "drivers_sub": "• **টপ-টায়ার ড্রাইভারส์:** রোগীর শরীরে নিম্নোক্ত প্রধান লক্ষণগুলো উপস্থিত থাকায় মডেলটির ডায়াবেটিস পজিティブ আসার সম্ভাবনা তীব্র হয়েছে:",
         "secondary_sub": "• **সহায়ক লক্ষণসমূহ:** এছাড়া সাপোর্টিং ফ্যাক্টর হিসেবে এই লক্ষণগুলো ঝুঁকি বাড়াতে ভূমিকা রেখেছে:",
         "clinical_note_pos": "> **ক্লিনিকাল নোট:** আমাদের মডেলে **Polyuria** এবং **Polydipsia** সবচেয়ে শক্তিশালী ঝুঁকির সূচক। রোগীর এই লক্ষণগুলো থাকলে দ্রুত HbA1c বা ফাস্টিং ব্লাড সুগার টেস্ট করানোর পরামর্শ দেওয়া যাচ্ছে।",
         "success_title": "✅ **ঝুঁকি মুক্ত থাকার কারণ:**",
@@ -390,7 +388,7 @@ if predict_btn:
                 'Features': ['Polyuria', 'Polydipsia', 'Gender', 'Itching', 'Alopecia', 'Age', 'Delayed healing', 'Irritability'],
                 'Mean |SHAP Value|': [2.304, 1.500, 1.484, 0.632, 0.556, 0.448, 0.436, 0.389]
             })
-            st.bar_chart(data=shap_data, x='Features', y='Mean |SHAP Value|', color="#ff7f0e", use_container_width=True)
+            st.bar_chart(data=shap_data, x='Features', y='Mean |SHAP Value|', color="#1d4ed8", use_container_width=True)
             st.caption(current_labels["global_caption"])
 
         with xai_col2:
